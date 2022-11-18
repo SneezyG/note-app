@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IndexedDB demo</title>
+    <link href="style.css" rel="stylesheet">
+    <script src="index.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <h2>My Note Pad</h2>
+    </header>
+
+    <section id="note-display">
+      <div id="noteHead">
+      <h5>
+      <span>Recent Notes</span>    
+      <button>New note</button>
+      </h5>
+      <hr/>
+      </div>
+      
+      <ul id="noteList">
+        <p>0 recent note</p>
+      </ul>
+      
+    </section>
+    
+    <footer>
+      <p>Copyright @ismailahmad</p>
+    </footer>
+    
+   
+    <dialog id="new-note">
+      <h4>Create a new note</h4>
+      <p id="error">error: title already exit</p>
+      <form method="dialog">
+        <div id="title">
+          <label for="title">Title:</label>
+          <input type="text">
+        </div>
+        <div>
+          <label for="body">Text:</label>
+          <br/>
+          <div id="body">
+          <span role="textbox" contenteditable></span>
+          </div>
+        </div>
+        <div id="button">
+          <button id="add">Create Note</button>
+          <button id="cancel">cancel</button>
+        </div>
+      </form>
+      
+      <p id="info">
+        <b>Note:</b> 
+        <span>Title can't be empty</span>
+      </p>
+    </dialog>
+    
+    <div id="backdrop">
+      </div>
+    
+  </body>
+
+</html>
