@@ -19,7 +19,7 @@ let headHeight = header.offsetHeight;
 const notes = document.querySelector("#note-display");
 const noteList = document.querySelector('#noteList');
 const titleInput = document.querySelector('#title > input');
-const bodyInput = document.querySelector('#body > span');
+const contentInput = document.querySelector('#body > span');
 const form = document.querySelector('form');
 const submitBtn = document.querySelector('#add');
 const newButton = document.querySelector('#noteHead button');
@@ -32,20 +32,83 @@ const error = document.querySelector("#error");
 let oldHeight = window.innerHeight;
 setHeight(oldHeight);
 
+// display available recent notes.
+const data = [
+     {
+       "title": "my token",
+       "content": "hsjsbcbcndieieieienfnbfnfjrjrkrjjrndnfnfnfnfnjejejrjdjdkdkdbcbcbcnjeieieidididkdkncncncncjdjdididkncncncncncieieieiencncncnfnieiddjdjncncncncnnccnncueirjdjdjdjncncncncurur"
+     } ,
+     {
+       "title": "email addresses",
+       "content":
+       "ahmadgbolly97@gmail <br> opeyeminasmat@gmail.com <br> ismailiqmah@gmail.com"
+     }
+  ];
+
+let noteTemplate = `
+<details>
+<summary>
+<b><%= title %></b>
+<hr/>
+</summary>
+<article>
+    <span class="content">
+    <%= content %>
+    </span>
+</article>
+</details>
+<div class="button">
+  <button data-id="<%= title %>" class="edit">Edit</button>
+  <button data-id="<%= title %>" class="delete">Delete</button>
+</div>`;
+
+const templateFunction = _.template(noteTemplate);
+
+displayNote();
 
 
-// group of document event and their listener.
+// show dialog box to create new note
 newButton.addEventListener('click', () => {
-     newNote.showModal();
-     bodyInput.innerHTML = "";
+     contentInput.innerHTML = "";
      titleInput.value = "";
+     titleInput.disabled = false;
      error.style.display = "none";
+     newNote.dataset.new = true;
+     newNote.showModal();
+     submitBtn.style.opacity = 0.6;
+     submitBtn.style.pointerEvents = "none";
 });
 
+
+
+
 submitBtn.addEventListener('click', () => {
-  console.log("note added to recent");
+  //console.log(contentInput.innerHTML);
+  let content = contentInput.innerHTML;
+  let title = titleInput.value.trim();
+  let status = newNote.dataset.new;
+  console.log(status);
+  
+  if (status == "false") {
+    let index = 0;
+    for (let item of data) {
+      if (item.title == title) {
+        item.content = content;
+        break;
+      }
+      index ++;
+    }
+  } else {
+    let item = {title, content};
+    data.push(item);
+  }
+  
+  displayNote();
+  
 })
 
+
+// validate dialog form
 titleInput.addEventListener('input', () => {
   submitBtn.style.opacity = 0.6;
   submitBtn.style.pointerEvents = "none";
@@ -53,13 +116,18 @@ titleInput.addEventListener('input', () => {
   let value = titleInput.value.trim();
   
   if (value.length > 0) {
-    if (value == "grocery-list") {
-      error.style.display = "block";
-    } else {
+    let index = 0;
+    
+    for (let item of data) {
+      if (value == item.title) {
+        error.style.display = "block";
+        return null;
+      }
+      index ++;
+   }
     submitBtn.style.opacity = 1;
     submitBtn.style.pointerEvents = "auto";
-    }
-    return null;
+    
   }
 })
 
@@ -91,4 +159,66 @@ function setHeight(height) {
 }
 
 
+// display recent notes.
+function displayNote() {
+  //first clear the notelist
+  noteList.replaceChildren();
+  
+  let p = document.createElement('p');
+  p.innerHTML = data.length + " recent note";
+  noteList.append(p);
+  
+  for (let item of data) {
+    let li = document.createElement('li');
+    li.className = "note";
+    li.innerHTML = templateFunction({
+      "title": item.title,
+      "content": item.content
+    });
+    noteList.append(li);
+  }
+  
+ 
+ const edit = document.querySelectorAll(".edit");
+ for (let elem of edit) {
+   elem.addEventListener("click", (e) => {
+     let id = e.target.dataset.id;
+     for (let item of data) {
+       if (item.title == id) {
+         contentInput.innerHTML = item.content;
+         titleInput.value = item.title;
+         break;
+       }
+     }
+ 
+     titleInput.disabled = true;
+     error.style.display = "none";
+     newNote.dataset.new = false;
+     newNote.showModal();
+     submitBtn.style.opacity = 1;
+     submitBtn.style.pointerEvents = "auto";
+   });
+ }
+ 
+ 
+ const delet = document.querySelectorAll(".delete");
+ for (let elem of delet) {
+   elem.addEventListener("click", (e) => {
+      let id = e.target.dataset.id;
+    
+      let index = 0;
+      for (let item of data) {
+        //console.log(data, index, item);
+        if (item.title == id) {
+          data.splice(index, 1);
+
+          displayNote();
+          break;
+        }
+        index ++;
+      }
+   });
+ }
+}
+   
 

@@ -44,7 +44,7 @@ footer {
 }
 
 #noteList {
-  border: 1px solid red;
+  /*border: 1px solid red;*/
   margin: 0;
   overflow-x: hidden;
   overflow-y: auto;
@@ -69,6 +69,58 @@ footer {
 #noteHead > h5 {
   margin-bottom: 15px;
 }
+
+.note {
+  border: 1.5px solid #5F9EA0;
+  padding: 10px;
+  margin: 10px 0 30px 0;
+  border-radius: 10px;
+}
+
+.note > details {
+  margin-bottom: 15px;
+}
+
+.note summary {
+  outline: none;
+  font-size: 14.5px;
+}
+
+b {
+  opacity: 0.8;
+}
+
+.note hr {
+  width: 40px;
+  margin: 2px 0 0 15px;
+}
+
+.note article {
+  padding: 0 10px 0 10px;
+  margin: 10px 0 0 0;
+  overflow-wrap: break-word;
+  font-size: 14px;
+}
+
+
+.button {
+  text-align: right;
+}
+
+.button > button {
+  margin-right: 18px;
+  font-size: 12px;
+}
+
+.delete {
+  padding: 3px 8px 3px 8px;
+  background-color: #EE4B2B;
+}
+
+.edit {
+  padding: 3px 14px 3px 14px;
+}
+
 
 
 hr {
@@ -151,19 +203,25 @@ dialog > h4 {
 
 #button > button {
   margin: 10px;
-  padding: 5px;
+  font-size: 13px;
 }
 
 #add {
   background-color: #5F9EA0;
+  padding: 5px;
   opacity: 0.6;
   pointer-events: none;
 }
 
 #cancel {
-  background-color: rgb(224, 60, 60);
+  background-color: #EE4B2B;
+  padding: 5px 10px 5px 10px;
 }
 
 #info {
   margin-bottom: 0;
+}
+
+#info > span {
+  font-size: 12.5px;
 }
