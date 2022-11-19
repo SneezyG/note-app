@@ -67,6 +67,14 @@ const templateFunction = _.template(noteTemplate);
 displayNote();
 
 
+// prevent default form submission on enter key press
+document.querySelector('input[name="title"]').onkeydown=e=>{
+
+   if(e.key==='Enter')e.preventDefault();
+
+};
+
+
 // show dialog box to create new note
 newButton.addEventListener('click', () => {
      contentInput.innerHTML = "";
