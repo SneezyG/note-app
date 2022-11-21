@@ -3,11 +3,12 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Note-app(indexdb) demo</title>
-    <link href="style.css" rel="stylesheet">
+    <title>Offline Web-App</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
     
     <script src="https://cdn.jsdelivr.net/npm/underscore@1.13.6/underscore-umd-min.js"></script>
-    <script src="index.js" defer></script>
+    
+     <script src="{{ url_for('static', filename='index.js') }}" defer></script>
     
   </head>
   <body>
@@ -16,6 +17,9 @@
     </header>
 
     <section id="note-display">
+      <p id="notify">
+       <span> modifications successful </span>
+      </p>
       <div id="noteHead">
       <h5>
       <span>Recent Notes</span>    
@@ -37,7 +41,7 @@
     
    
     <dialog id="new-note">
-      <h4>Create a new note</h4>
+      <h4>Create Note</h4>
       <p id="error">error: title already exit</p>
       <form method="dialog">
         <div id="title">

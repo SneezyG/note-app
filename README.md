@@ -1,2 +1,2 @@
 # note-app
-An offline note-pad web application 
+Note-Pad(An offline web note-taking application)

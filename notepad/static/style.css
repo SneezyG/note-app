@@ -1,3 +1,26 @@
+
+
+
+   @keyframes notifyAnime {
+    0%   {opacity: 0;}
+    35%  {opacity: 1;}
+    100% {opacity: 0;}
+   }
+   
+   
+   @keyframes removeAnime {
+      0%   {
+        opacity: 1;
+      }
+      50%  {
+        opacity: 0.5;
+      }
+      100% {
+        opacity: 0;
+      }
+   }
+
+
 html {
   font-family: sans-serif;
 }
@@ -33,6 +56,27 @@ footer {
   margin: auto
 }
 
+#notify {
+   margin: 0;
+   padding: 0;
+   display: flex;
+   justify-content: center;
+}
+
+#notify > span {
+  background-color: #343434;
+  color: white;
+  font-size: 12.5px;
+  padding: 6px 14px;
+  border-radius: 5px;
+  position: relative;
+  top: 10px;
+  animation: notifyAnime;
+  animation-duration: 2.5s;
+  animation-play-state: paused;
+  z-index: 1;
+}
+
 #noteHead {
   margin-bottom: 5px;
 }
@@ -60,7 +104,7 @@ footer {
   padding: 0;
   text-align: center;
   opacity: 0.7;
-  font-size: 13px;
+  font-size: 12px;
 }
 
 #noteHead button {
@@ -72,6 +116,7 @@ footer {
 
 #noteHead > h5 {
   margin-bottom: 15px;
+  margin-top: 0;
 }
 
 .note {
@@ -79,6 +124,10 @@ footer {
   padding: 10px;
   margin: 10px 0 30px 0;
   border-radius: 10px;
+  animation: removeAnime;
+  animation-play-state: paused;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;  
 }
 
 .note > details {
@@ -101,7 +150,7 @@ b {
 }
 
 .note article {
-  padding: 0 10px 0 10px;
+  padding: 0 10px 0 30px;
   margin: 10px 0 0 0;
   overflow-wrap: break-word;
   font-size: 14px;
