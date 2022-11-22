@@ -375,3 +375,12 @@ function delfunc(e) {
     });
 }
 
+
+// register a service worker for your app.
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("../sw.js").then((reg) => { 
+    alert('Service Worker registration was successful with scope: ' + reg.scope);
+    }, (err) => {
+       alert('ServiceWorker registration failed: ' + err);
+    });
+}
