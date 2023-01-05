@@ -1,5 +1,4 @@
 
-alert("am inside service worker");
 self.addEventListener("install", (e) => {
   alert("am inside install");
   e.waitUntil(

@@ -67,8 +67,8 @@ footer {
   background-color: #343434;
   color: white;
   font-size: 12.5px;
-  padding: 6px 14px;
-  border-radius: 5px;
+  padding: 8px 20px 10px 20px;
+  border-radius: 13px;
   position: relative;
   top: 10px;
   animation: notifyAnime;
