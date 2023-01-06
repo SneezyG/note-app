@@ -182,7 +182,7 @@ submitBtn.addEventListener('click', () => {
       notify.innerHTML = msg;
       notify.style.animationPlayState = "running";
       notify.addEventListener("animationend", resetNotify, {once:true});
-        displayNote();
+      displayNote();
     });
     
   transaction.addEventListener("error", () =>
@@ -193,10 +193,18 @@ submitBtn.addEventListener('click', () => {
 
 
 function resetNotify(e) {
-     let elem = e.target;
+   let elem = e.target;
+   document.addEventListener('click', () => {
      elem.style.animation = "none";
      elem.offsetWidth;
      elem.style.animation = null;
+   }, {once:true});
+   
+   setTimeout(() => {
+     elem.style.animation = "none";
+     elem.offsetWidth;
+     elem.style.animation = null;
+   }, 4000)
 }
 
 
