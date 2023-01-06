@@ -192,14 +192,18 @@ submitBtn.addEventListener('click', () => {
 })
 
 
+
+// add a listener to document to reset notification.
+document.addEventListener('click', () => {
+   notify.style.animation = "none";
+   notify.offsetWidth;
+   notify.style.animation = null;
+});
+
+
+
 function resetNotify(e) {
    let elem = e.target;
-   document.addEventListener('click', () => {
-     elem.style.animation = "none";
-     elem.offsetWidth;
-     elem.style.animation = null;
-   }, {once:true});
-   
    setTimeout(() => {
      elem.style.animation = "none";
      elem.offsetWidth;
